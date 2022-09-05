@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>File Uploader</title>
+	</head>
+	<body style="background-color: black; color: white;">
+		<form action="/upload" method="POST" enctype="multipart/form-data">
+			<input type="file" id="files" name="files" webkitdirectory multiple />
+			<br>
+			<ul id="listing"></ul>
+			<br>
+			<button>Upload</button>
+		</form>
+		<script>
+document.getElementById("files").addEventListener("change", e => {
+	let output = document.getElementById("listing")
+	output.innerHTML = ''
+	for(const file of e.target.files) {
+		let item = document.createElement("li");
+		item.textContent = file.webkitRelativePath;
+		output.appendChild(item);
+	}
+}, false);
+		</script>
+	</body>
+</html>
